@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Duper</title>
+<style>
+  body {
+    font-family:"Segoe UI",sans-serif;
+    background-color:#252425;
+    color:#e0e0e0;
+    margin:0;
+    text-align:center;
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+  }
+  header {
+    background-color:#252425;
+    padding:20px 0 10px 0;
+    font-weight:bold;
+    position:relative;
+  }
+  header h1 {
+    color:#ffffff;
+    font-size:42px;
+    margin:0;
+  }
+  header .subtitle {
+    color:#ffffff;
+    font-size:18px;
+    margin-top:8px;
+  }
+
+  #discord-container {
+    position:absolute;
+    right:30px;
+    top:25px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+  }
+  #discord-btn {
+    display:flex;
+    align-items:center;
+    gap:8px;
+    color:#ffffff;
+    font-weight:bold;
+    font-size:18px;
+    cursor:pointer;
+    transition:0.2s;
+  }
+  #discord-btn:hover { color:#5865F2; }
+  #discord-btn img { width:22px; height:22px; }
+  #copy-message {
+    display:none;
+    color:#5865F2;
+    font-size:14px;
+    margin-top:5px;
+  }
+
+  .nav { margin-top:25px; }
+  .nav button {
+    background:transparent;
+    border:2px solid #2fa572;
+    color:#2fa572;
+    font-size:18px;
+    padding:12px 26px;
+    margin:10px;
+    border-radius:10px;
+    cursor:pointer;
+    transition:.25s;
+  }
+  .nav button:hover { background:#2fa572;color:#252425; }
+
+  .content {
+    margin:50px auto 20px auto;
+    width:90%;
+    max-width:1000px;
+    background-color:#1d1c1d;
+    border-radius:15px;
+    padding:30px;
+    box-shadow:0 0 20px rgba(47,165,114,.15);
+    flex:1;
+  }
+  .hidden{display:none;}
+  h2{color:#2fa572;margin-bottom:20px;}
+  .version{font-size:18px;margin:5px 0;}
+  .green{color:#2fa572;}
+  .red{color:#ff4444;}
+
+  .servers-container {
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:30px;
+  }
+  .server{
+    width:280px;
+    background-color:#2e2d2e;
+    border-radius:12px;
+    box-shadow:0 0 10px rgba(47,165,114,.2);
+    padding:20px;
+    transition:transform .2s;
+  }
+  .server:hover{transform:translateY(-4px);}
+  .server img{
+    width:100%;
+    border-radius:10px;
+  }
+  .server h3{margin-top:10px;font-size:22px;color:#2fa572;}
+  .server a{
+    display:inline-block;
+    margin-top:10px;
+    text-decoration:none;
+    color:#ffffff;
+    font-weight:bold;
+  }
+  .server.gray img{opacity:.4;filter:grayscale(100%);}
+  footer{
+    color:#777;
+    font-size:14px;
+    padding:15px 0;
+    margin-top:auto;
+    background-color:#1d1c1d;
+  }
+  .download-btn{
+    background-color:#2fa572;
+    color:#252425;
+    font-weight:bold;
+    font-size:26px;
+    padding:22px 48px;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+    transition:0.25s;
+    margin-top:20px;
+  }
+  .download-btn:hover{background-color:#36b77f;}
+  p{line-height:1.7;font-size:17px;margin-bottom:18px;}
+  b{color:#2fa572;}
+</style>
+</head>
+<body>
+<header>
+  <h1>Duper</h1>
+  <div class="subtitle">Minecraft için akıllı ve modern bir yardımcı uygulama</div>
+
+  <div id="discord-container">
+    <div id="discord-btn" onclick="copyDiscord()">
+      <img src="https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/discord-white-icon.png" alt="Discord Logo">
+      Discord
+    </div>
+    <div id="copy-message">Discord kopyalandı!</div>
+  </div>
+</header>
+
+<div class="nav">
+  <button onclick="showSection('indir')">İndir</button>
+  <button onclick="showSection('surumler')">Sürümler</button>
+  <button onclick="showSection('sunucular')">Sunucular</button>
+</div>
+
+<div id="tanitim" class="content">
+  <h2><b>Duper Nedir?</b></h2>
+  <p><b>Duper</b>, Minecraft oyuncularının oyun içindeki <b>Java değişkenlerini</b> manipüle ederek <b>eşya çoğaltma (dupe)</b> işlemlerini
+  kolay, güvenli ve hızlı biçimde gerçekleştirmelerini sağlayan güçlü bir yardımcı yazılımdır.</p>
+
+  <p>Uygulama, oyun belleğindeki <b>envanter güncellemelerini</b> ve <b>blok etkileşimlerini</b> takip eder, ardından bu verileri
+  kullanarak belirli <b>dupe algoritmalarını</b> otomatik uygular. Kullanıcı, yalnızca birkaç tıklamayla karmaşık dupe yöntemlerini
+  basitleştirilmiş bir arayüz üzerinden kullanabilir.</p>
+
+  <p><b>Duper</b>, performans odaklı yapısıyla öne çıkar. İçerisinde bulunan <b>Packet Delayer</b>, <b>Send+</b>, <b>PacketsQ</b>,
+  <b>PacketsJava</b>, <b>Lag SQ</b> ve <b>Lag CQ</b> gibi gelişmiş metodlar sayesinde veri paketleri üzerinde yüksek düzeyde kontrol sağlar.
+  Bu metodlar, oyuncunun sunucu ile olan iletişimini hassas biçimde ayarlayarak dupe başarısını artırır.</p>
+
+  <p>Tamamen <b>Minecraft Java Edition</b> için geliştirilmiştir. Düşük sistem gereksinimleri, sade arayüzü ve düzenli güncellemeleriyle
+  yeni başlayanlardan profesyonel oyunculara kadar geniş bir kullanıcı kitlesine hitap eder.</p>
+
+  <p><b>Duper</b>, kaynak toplamanın ötesinde, Minecraft dünyasında deneyimi kişiselleştirmenize ve sınırları zorlamanıza imkan tanır.</p>
+</div>
+
+<div id="indir" class="content hidden">
+  <h2>Duper'ı İndir</h2>
+  <p>Uygulamanın en güncel sürümünü GitHub sayfasından indirebilirsiniz.</p>
+  <a href="https://github.com/eronforyou/Duper/releases/tag/Minecraft" target="_blank">
+    <button class="download-btn">GitHub'dan İndir</button>
+  </a>
+</div>
+
+<div id="surumler" class="content hidden">
+  <h2>Desteklenen Minecraft Sürümleri</h2>
+  <div id="versionList"></div>
+</div>
+
+<div id="sunucular" class="content hidden">
+  <h2>Desteklenen Sunucular</h2>
+  <div class="servers-container">
+    <div class="server">
+      <img src="https://i.imgur.com/AhBPJkJ_d.webp?maxwidth=760&fidelity=grand" alt="ChickenSMP">
+      <h3>ChickenSMP</h3>
+      <a href="https://www.youtube.com/watch?v=ozgmmE2ewWo" target="_blank">Videoyu izlemek için tıkla!</a>
+    </div>
+
+    <div class="server gray">
+      <img src="https://i.imgur.com/CmbQu6Q.png" alt="HanedanMC">
+      <h3>HanedanMC</h3>
+      <p>Yakında gelecek!</p>
+    </div>
+
+    <div class="server gray">
+      <img src="https://i.imgur.com/yWZP6wV.png" alt="Melonya">
+      <h3>Melonya</h3>
+      <p>Yakında gelecek!</p>
+    </div>
+
+    <div class="server gray">
+      <img src="https://i.imgur.com/OsSkjDG_d.webp?maxwidth=760&fidelity=grand" alt="DonutSMP">
+      <h3>DonutSMP</h3>
+      <p>Yakında gelecek!</p>
+    </div>
+  </div>
+</div>
+
+<footer>Duper © 2025 • by eron4u</footer>
+
+<script>
+let canGoBack=false;
+function showSection(id){
+  if(id==="tanitim" && !canGoBack) return;
+  canGoBack=true;
+  ["tanitim","indir","surumler","sunucular"].forEach(s=>document.getElementById(s).classList.add("hidden"));
+  document.getElementById(id).classList.remove("hidden");
+}
+
+function copyDiscord(){
+  navigator.clipboard.writeText("eron4u");
+  const msg=document.getElementById("copy-message");
+  msg.style.display="block";
+  setTimeout(()=>{msg.style.display="none";},2000);
+}
+
+const versions=[
+"1.21.10","1.21.9","1.21.8","1.21.7","1.21.6","1.21.5",
+"1.21.4","1.21.3","1.21.2","1.21.1","1.21",
+"1.20.6","1.20.4","1.20.2","1.20.1","1.20",
+"1.19.4","1.19.3","1.19.2","1.19.1","1.19",
+"1.18.2","1.18.1","1.18",
+"1.17.1","1.17",
+"1.16.5","1.16.4","1.16.3","1.16.2","1.16.1","1.16",
+"1.15.2","1.15.1","1.15",
+"1.14.4","1.14.3","1.14.2","1.14.1","1.14",
+"1.13.2","1.13.1","1.13",
+"1.12.2","1.12.1","1.12",
+"1.11.2","1.11.1","1.11",
+"1.10.2","1.10.1","1.10",
+"1.9.4","1.9.3","1.9.2","1.9.1","1.9",
+"1.8.9","1.8.8","1.8.7","1.8.6","1.8.5","1.8.4","1.8.3","1.8.1","1.8",
+"1.7.10","1.7.9","1.7.8","1.7.5","1.7.4","1.7.2"
+];
+const list=document.getElementById("versionList");
+versions.forEach(v=>{
+  const div=document.createElement("div");
+  div.classList.add("version");
+  const [maj,min]=v.split('.').map(Number);
+  if(maj>1||(maj===1&&min>=15))div.classList.add("green");
+  else div.classList.add("red");
+  div.textContent=v;
+  list.appendChild(div);
+});
+</script>
+</body>
+</html>
