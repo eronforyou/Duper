@@ -4,7 +4,6 @@ import psutil
 import requests
 import threading
 import tkinter as tk
-import base64
 
 ctk.set_appearance_mode("dark")
 ctk.set_default_color_theme("green")
@@ -121,3 +120,4 @@ method_button.place(relx=1.0, rely=1.0, x=-15, y=-15, anchor="se")
 threading.Thread(target=fetch_version, daemon=True).start()
 center_window(app)
 app.mainloop()
+
